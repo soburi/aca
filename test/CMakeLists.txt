@@ -29,6 +29,7 @@ set(TEST_SRCS
   src/Common/test_map.cpp
   src/Common/test_max.cpp
   src/Common/test_min.cpp
+  src/IPAddress/test_toString.cpp
   src/IPAddress/test_fromString.cpp
   src/IPAddress/test_fromString6.cpp
   src/IPAddress/test_IPAddress.cpp
