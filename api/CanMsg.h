@@ -12,9 +12,8 @@
  * INCLUDE
  **************************************************************************************/
 
-#include <cstdlib>
-#include <cstdint>
-#include <cstring>
+#include <stdint.h>
+#include <string.h>
 
 #include <Arduino.h>
 
