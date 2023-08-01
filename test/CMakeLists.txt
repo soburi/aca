@@ -121,8 +121,8 @@ add_compile_definitions(HOST)
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 add_compile_options(-Wno-cast-function-type)
 
-set(CMAKE_C_FLAGS   ${CMAKE_C_FLAGS}   "--coverage")
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "--coverage -Wno-deprecated-copy")
+set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS} --coverage")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -Wno-deprecated-copy")
 
 ##########################################################################
 
