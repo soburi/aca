@@ -15,7 +15,9 @@
 #include <stdint.h>
 #include <string.h>
 
-#include <Arduino.h>
+#include "Print.h"
+#include "Printable.h"
+#include "Common.h"
 
 /**************************************************************************************
  * NAMESPACE
@@ -112,20 +114,20 @@ public:
    * |- Bit   29 : reserved (future error frame flag)
    * |- Bit 0-28 : CAN identifier (11/29 bit)
    */
-  uint32_t id;
-  uint8_t  data_length;
-  uint8_t  data[MAX_DATA_LENGTH];
+  private: uint32_t id;
+  public:  uint8_t  data_length;
+  public:  uint8_t  data[MAX_DATA_LENGTH];
 };
 
 /**************************************************************************************
  * FREE FUNCTIONS
  **************************************************************************************/
 
-static uint32_t CanStandardId(uint32_t const id) {
+inline uint32_t CanStandardId(uint32_t const id) {
   return (id & CanMsg::CAN_SFF_MASK);
 }
 
-static uint32_t CanExtendedId(uint32_t const id) {
+inline uint32_t CanExtendedId(uint32_t const id) {
   return (CanMsg::CAN_EFF_FLAG | (id & CanMsg::CAN_EFF_MASK));
 }
 
