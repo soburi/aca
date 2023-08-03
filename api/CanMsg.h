@@ -114,9 +114,9 @@ public:
    * |- Bit   29 : reserved (future error frame flag)
    * |- Bit 0-28 : CAN identifier (11/29 bit)
    */
-  private: uint32_t id;
-  public:  uint8_t  data_length;
-  public:  uint8_t  data[MAX_DATA_LENGTH];
+  uint32_t id;
+  uint8_t  data_length;
+  uint8_t  data[MAX_DATA_LENGTH];
 };
 
 /**************************************************************************************
