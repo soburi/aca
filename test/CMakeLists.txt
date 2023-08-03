@@ -31,6 +31,8 @@ set(TEST_SRCS
   src/CanMsg/test_CanStandardId.cpp
   src/CanMsg/test_isExtendedId.cpp
   src/CanMsg/test_isStandardId.cpp
+  src/CanMsg/test_operator_assignment.cpp
+  src/CanMsg/test_printTo.cpp
   src/Common/test_makeWord.cpp
   src/Common/test_map.cpp
   src/Common/test_max.cpp

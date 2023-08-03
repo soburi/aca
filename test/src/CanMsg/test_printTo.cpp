@@ -9,6 +9,7 @@
 #include <catch.hpp>
 
 #include <CanMsg.h>
+#include <PrintMock.h>
 
 /**************************************************************************************
  * NAMESPACE
@@ -20,18 +21,24 @@ using namespace arduino;
  * TEST CODE
  **************************************************************************************/
 
-TEST_CASE ("Test copy constructor", "[CanMsg-CopyCtor-01]")
+TEST_CASE ("Print CAN frame with standard ID", "[CanMsg-printTo-1]")
 {
-  uint8_t const msg_data[4] = {0xDE, 0xAD, 0xC0, 0xDE};
+  uint8_t const std_msg_data[] = {0xBE, 0xEF};
+  CanMsg const std_msg(CanStandardId(0x20), sizeof(std_msg_data), std_msg_data);
 
-  CanMsg const msg_1(CanStandardId(0x20), sizeof(msg_data), msg_data);
-  CanMsg const msg_2(msg_1);
+  PrintMock mock;
+  mock.print(std_msg);
 
-  REQUIRE(msg_1.data_length == msg_2.data_length);
+  REQUIRE(mock._str  == "[020] (2) : BEEF");
+}
 
-  for (size_t i = 0; i < msg_1.data_length; i++)
-  {
-    REQUIRE(msg_1.data[i] == msg_data[i]);
-    REQUIRE(msg_2.data[i] == msg_data[i]);
-  }
+TEST_CASE ("Print CAN frame with extended ID", "[CanMsg-printTo-1]")
+{
+  uint8_t const ext_msg_data[] = {0xDE, 0xAD, 0xC0, 0xDE};
+  CanMsg const ext_msg(CanExtendedId(0x20), sizeof(ext_msg_data), ext_msg_data);
+
+  PrintMock mock;
+  mock.print(ext_msg);
+
+  REQUIRE(mock._str  == "[00000020] (4) : DEADC0DE");
 }
