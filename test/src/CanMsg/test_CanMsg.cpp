@@ -50,3 +50,17 @@ TEST_CASE ("Test constructor with data (data length > CanMsg::MAX_DATA_LENGTH)",
   for (size_t i = 0; i < msg.data_length; i++)
     REQUIRE(msg.data[i] == msg_data[i]);
 }
+
+TEST_CASE ("Test constructor constructing a CAN frame with standard ID", "[CanMsg-CanMsg-04]")
+{
+  CanMsg const msg(CanStandardId(0x20), 0, nullptr);
+
+  REQUIRE(msg.id == 0x20);
+}
+
+TEST_CASE ("Test constructor constructing a CAN frame with extended ID", "[CanMsg-CanMsg-05]")
+{
+  CanMsg const msg(CanExtendedId(0x20), 0, nullptr);
+
+  REQUIRE(msg.id == (CanMsg::CAN_EFF_FLAG | 0x20));
+}
