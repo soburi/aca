@@ -25,6 +25,7 @@ set(TEST_TARGET ${CMAKE_PROJECT_NAME})
 ##########################################################################
 
 set(TEST_SRCS
+  src/CanMsg/test_CanMsg.cpp
   src/CanMsg/test_CanExtendedId.cpp
   src/CanMsg/test_CanStandardId.cpp
   src/CanMsg/test_isExtendedId.cpp
