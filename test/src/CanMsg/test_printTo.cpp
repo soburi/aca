@@ -32,7 +32,7 @@ TEST_CASE ("Print CAN frame with standard ID", "[CanMsg-printTo-1]")
   REQUIRE(mock._str  == "[020] (2) : BEEF");
 }
 
-TEST_CASE ("Print CAN frame with extended ID", "[CanMsg-printTo-1]")
+TEST_CASE ("Print CAN frame with extended ID", "[CanMsg-printTo-2]")
 {
   uint8_t const ext_msg_data[] = {0xDE, 0xAD, 0xC0, 0xDE};
   CanMsg const ext_msg(CanExtendedId(0x20), sizeof(ext_msg_data), ext_msg_data);
