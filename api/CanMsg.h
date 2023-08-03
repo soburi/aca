@@ -33,7 +33,7 @@ namespace arduino
 class CanMsg : public Printable
 {
 public:
-  static size_t   constexpr MAX_DATA_LENGTH = 8;
+  static uint8_t  constexpr MAX_DATA_LENGTH = 8;
 
   static uint32_t constexpr CAN_EFF_FLAG    = 0x80000000U;
   static uint32_t constexpr CAN_SFF_MASK    = 0x000007FFU; /* standard frame format (SFF) */
@@ -42,10 +42,10 @@ public:
 
   CanMsg(uint32_t const can_id, uint8_t const can_data_len, uint8_t const * can_data_ptr)
   : id{can_id}
-  , data_length{can_data_len}
+  , data_length{min(can_data_len, MAX_DATA_LENGTH)}
   , data{0}
   {
-    memcpy(data, can_data_ptr, min(can_data_len, MAX_DATA_LENGTH));
+    memcpy(data, can_data_ptr, data_length);
   }
 
   CanMsg() : CanMsg(0, 0, nullptr) { }

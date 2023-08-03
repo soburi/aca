@@ -22,7 +22,7 @@ namespace arduino
  * STATIC CONST DEFINITION
  **************************************************************************************/
 
-size_t   const CanMsg::MAX_DATA_LENGTH;
+uint8_t  const CanMsg::MAX_DATA_LENGTH;
 uint32_t const CanMsg::CAN_EFF_FLAG;
 uint32_t const CanMsg::CAN_SFF_MASK;
 uint32_t const CanMsg::CAN_EFF_MASK;
