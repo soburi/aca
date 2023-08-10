@@ -59,14 +59,15 @@ public:
 
   virtual ~CanMsg() { }
 
-  void operator = (CanMsg const & other)
+  CanMsg & operator = (CanMsg const & other)
   {
-    if (this == &other)
-      return;
-
-    this->id          = other.id;
-    this->data_length = other.data_length;
-    memcpy(this->data, other.data, this->data_length);
+    if (this != &other)
+    {
+      this->id          = other.id;
+      this->data_length = other.data_length;
+      memcpy(this->data, other.data, this->data_length);
+    }
+    return (*this);
   }
 
   virtual size_t printTo(Print & p) const override
