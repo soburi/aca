@@ -12,7 +12,7 @@
  * INCLUDE
  **************************************************************************************/
 
-#include <stdint.h>
+#include <inttypes.h>
 #include <string.h>
 
 #include <Arduino.h>
@@ -68,7 +68,7 @@ public:
     size_t len = 0;
 
     /* Print the header. */
-    len = snprintf(buf, sizeof(buf), "[%08X] (%d) : ", id, data_length);
+    len = snprintf(buf, sizeof(buf), "[%08" PRIX32 "] (%d) : ", id, data_length);
     size_t n = p.write(buf, len);
 
     /* Print the data. */
