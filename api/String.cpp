@@ -652,7 +652,7 @@ void String::replace(const String& find, const String& replace)
 		}
 	} else if (diff < 0) {
 		unsigned int size = len; // compute size needed for result
-        diff = 0 - diff;
+		diff = 0 - diff;
 		while ((foundAt = strstr(readFrom, find.buffer)) != NULL) {
 			readFrom = foundAt + find.len;
 			size -= diff;
