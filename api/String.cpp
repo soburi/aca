@@ -234,10 +234,10 @@ void String::move(String &rhs)
 String & String::operator = (const String &rhs)
 {
 	if (this == &rhs) return *this;
-	
+
 	if (rhs.buffer) copy(rhs.buffer, rhs.len);
 	else invalidate();
-	
+
 	return *this;
 }
 
@@ -253,7 +253,7 @@ String & String::operator = (const char *cstr)
 {
 	if (cstr) copy(cstr, strlen(cstr));
 	else invalidate();
-	
+
 	return *this;
 }
 
@@ -484,7 +484,7 @@ bool String::equalsIgnoreCase( const String &s2 ) const
 	const char *p2 = s2.buffer;
 	while (*p1) {
 		if (tolower(*p1++) != tolower(*p2++)) return false;
-	} 
+	}
 	return true;
 }
 
@@ -515,7 +515,7 @@ char String::charAt(unsigned int loc) const
 	return operator[](loc);
 }
 
-void String::setCharAt(unsigned int loc, char c) 
+void String::setCharAt(unsigned int loc, char c)
 {
 	if (loc < len) buffer[loc] = c;
 }
@@ -652,9 +652,9 @@ void String::replace(const String& find, const String& replace)
 		}
 	} else if (diff < 0) {
 		unsigned int size = len; // compute size needed for result
+        diff = 0 - diff;
 		while ((foundAt = strstr(readFrom, find.buffer)) != NULL) {
 			readFrom = foundAt + find.len;
-			diff = 0 - diff;
 			size -= diff;
 		}
 		if (size == len) return;
