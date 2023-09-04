@@ -12,7 +12,7 @@
  * INCLUDE
  **************************************************************************************/
 
-#include <stdint.h>
+#include <inttypes.h>
 #include <string.h>
 
 #include "Print.h"
@@ -77,9 +77,9 @@ public:
 
     /* Print the header. */
     if (isStandardId())
-      len = snprintf(buf, sizeof(buf), "[%03X] (%d) : ", getStandardId(), data_length);
+      len = snprintf(buf, sizeof(buf), "[%03" PRIX32 "] (%d) : ", getStandardId(), data_length);
     else
-      len = snprintf(buf, sizeof(buf), "[%08X] (%d) : ", getExtendedId(), data_length);
+      len = snprintf(buf, sizeof(buf), "[%08" PRIX32 "] (%d) : ", getExtendedId(), data_length);
     size_t n = p.write(buf, len);
 
     /* Print the data. */
