@@ -96,13 +96,18 @@ IPAddress::IPAddress(const char *address)
 
 String IPAddress::toString4() const
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     char szRet[16];
     sprintf(szRet,"%u.%u.%u.%u", _address.bytes[IPADDRESS_V4_BYTES_INDEX], _address.bytes[IPADDRESS_V4_BYTES_INDEX + 1], _address.bytes[IPADDRESS_V4_BYTES_INDEX + 2], _address.bytes[IPADDRESS_V4_BYTES_INDEX + 3]);
     return String(szRet);
+#pragma GCC diagnostic pop
 }
 
 String IPAddress::toString6() const
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     char szRet[40];
     sprintf(szRet,"%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x",
             _address.bytes[0], _address.bytes[1], _address.bytes[2], _address.bytes[3],
@@ -110,6 +115,7 @@ String IPAddress::toString6() const
             _address.bytes[8], _address.bytes[9], _address.bytes[10], _address.bytes[11],
             _address.bytes[12], _address.bytes[13], _address.bytes[14], _address.bytes[15]);
     return String(szRet);
+#pragma GCC diagnostic pop
 }
 
 String IPAddress::toString() const

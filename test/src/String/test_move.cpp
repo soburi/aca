@@ -1,6 +1,6 @@
 #include <catch.hpp>
 
-#include <String.h>
+#include "api/String.h"
 
 #include "StringPrinter.h"
 
@@ -32,6 +32,9 @@ TEST_CASE("Testing String move assignment", "[String-move-02]")
 TEST_CASE("Testing String move self assignment", "[String-move-03]")
 {
     arduino::String a("src");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wself-move"
     a = std::move(a);
+#pragma GCC diagnostic pop
     REQUIRE(a == "src");
 }
