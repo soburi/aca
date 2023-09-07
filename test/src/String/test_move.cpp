@@ -31,7 +31,7 @@ TEST_CASE("Testing String move assignment", "[String-move-02]")
 
 TEST_CASE("Testing String move self assignment", "[String-move-03]")
 {
-#if defined(GCC_VERSION) && GCC_VERSION >= 13
+#if (defined(GCC_VERSION) && GCC_VERSION >= 13) || (defined(__clang_major__) && __clang_major__ >= 14)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wself-move"
 #endif
