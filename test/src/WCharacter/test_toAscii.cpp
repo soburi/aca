@@ -6,8 +6,6 @@
  * INCLUDE
  **************************************************************************************/
 
-#undef _GNU_SOURCE
-
 #include <catch.hpp>
 
 #include <vector>
