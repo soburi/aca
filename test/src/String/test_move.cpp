@@ -31,10 +31,14 @@ TEST_CASE("Testing String move assignment", "[String-move-02]")
 
 TEST_CASE("Testing String move self assignment", "[String-move-03]")
 {
-    arduino::String a("src");
+#if defined(GCC_VERSION) && GCC_VERSION >= 13
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wself-move"
+#endif
+    arduino::String a("src");
     a = std::move(a);
-#pragma GCC diagnostic pop
     REQUIRE(a == "src");
+#if defined(GCC_VERSION) && GCC_VERSION >= 13
+#pragma GCC diagnostic pop
+#endif
 }
