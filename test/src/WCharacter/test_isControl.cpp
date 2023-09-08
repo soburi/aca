@@ -10,7 +10,7 @@
 
 #include <vector>
 
-#include "api/WCharacter.h"
+#include <api/WCharacter.h>
 
 /**************************************************************************************
  * CONSTANTS

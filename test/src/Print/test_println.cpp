@@ -8,7 +8,7 @@
 
 #include <catch.hpp>
 
-#include "api/Print.h"
+#include <api/Print.h>
 
 #include <PrintMock.h>
 #include <PrintableMock.h>

@@ -8,7 +8,7 @@
 
 #include <catch.hpp>
 
-#include "api/WCharacter.h"
+#include <api/WCharacter.h>
 
 /**************************************************************************************
  * TEST CODE

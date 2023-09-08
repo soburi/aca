@@ -1,7 +1,7 @@
 #pragma once
 
 #include <catch.hpp>
-#include "api/String.h"
+#include <api/String.h>
 
 namespace Catch {
   /**

@@ -8,7 +8,7 @@
 
 #include <catch.hpp>
 
-#include "api/CanMsgRingbuffer.h"
+#include <api/CanMsgRingbuffer.h>
 
 /**************************************************************************************
  * TEST CODE

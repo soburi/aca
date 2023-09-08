@@ -8,7 +8,7 @@
 
 #include <catch.hpp>
 
-#include "api/CanMsg.h"
+#include <api/CanMsg.h>
 
 /**************************************************************************************
  * NAMESPACE

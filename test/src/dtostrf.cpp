@@ -6,7 +6,7 @@
  * INCLUDE
  **************************************************************************************/
 
-#include "api/deprecated-avr-comp/avr/dtostrf.h"
+#include <api/deprecated-avr-comp/avr/dtostrf.h>
 
 #include <stdlib.h>
 
@@ -18,7 +18,7 @@
 extern "C" {
 #endif
 
-#include "api/deprecated-avr-comp/avr/dtostrf.c.impl"
+#include <api/deprecated-avr-comp/avr/dtostrf.c.impl>
 
 #ifdef __cplusplus
 } // extern "C"
