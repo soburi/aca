@@ -77,6 +77,8 @@ In order to compile a core which is implementing ArduinoCore-API you'll need to 
 tar --exclude='*.git*' -cjhvf $yourcore-$version.tar.bz2 $yourcore/
 ```
 
+The API is coded to the C++11 standard and the core's compiler must be able to support that version of the language.
+
 Documentation for how to integrate with a Arduino core (which is necessary if you do not download the Arduino core via the Boards Manager) can be found here:
 * [ArduinoCore-megaavr](https://github.com/arduino/ArduinoCore-megaavr#developing)
 * [ArduinoCore-mbed](https://github.com/arduino/ArduinoCore-mbed#clone-the-repository-in-sketchbookhardwarearduino-git)
