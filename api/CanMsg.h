@@ -51,7 +51,11 @@ public:
 
   CanMsg() : CanMsg(0, 0, nullptr) { }
 
-  CanMsg(CanMsg const & other) : CanMsg(other.id, other.data_length, other.data) {
+  CanMsg(CanMsg const & other) {
+      id          = other.id;
+      data_length = other.data_length;
+      if (data_length > 0)
+          memcpy(data, other.data, data_length);
   }
 
   virtual ~CanMsg() { }
