@@ -53,10 +53,10 @@ public:
 
   CanMsg(CanMsg const & other)
   {
-    this->id          = other.id;
-    this->data_length = other.data_length;
-    if (this->data_length && other.data)
-      memcpy(this->data, other.data, this->data_length);
+    id          = other.id;
+    data_length = other.data_length;
+    if (data_length > 0)
+      memcpy(data, other.data, data_length);
   }
 
   virtual ~CanMsg() { }
@@ -65,10 +65,10 @@ public:
   {
     if (this != &other)
     {
-      this->id          = other.id;
-      this->data_length = other.data_length;
-      if (this->data_length && other.data)
-        memcpy(this->data, other.data, this->data_length);
+      id          = other.id;
+      data_length = other.data_length;
+      if (data_length > 0)
+        memcpy(data, other.data, data_length);
     }
     return (*this);
   }
