@@ -98,7 +98,7 @@ public:
     virtual size_t printTo(Print& p) const;
     String toString() const;
 
-    IPType type() { return _type; }
+    IPType type() const { return _type; }
 
     friend class UDP;
     friend class Client;
