@@ -21,6 +21,7 @@
 #define __DMA_POOL_H__
 
 #include <atomic>
+#include <memory>
 
 namespace arduino {
 
