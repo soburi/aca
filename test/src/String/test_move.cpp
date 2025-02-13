@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-#include <catch.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include <api/String.h>
 
