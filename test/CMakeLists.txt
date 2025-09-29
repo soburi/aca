@@ -8,11 +8,20 @@ cmake_minimum_required(VERSION 2.8)
 
 project(test-ArduinoCore-API)
 
+Include(FetchContent)
+
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.4.0
+)
+
+FetchContent_MakeAvailable(Catch2)
+
 ##########################################################################
 
 include_directories(..)
 include_directories(include)
-include_directories(external/catch/v2.13.9/include)
 
 ##########################################################################
 
@@ -118,7 +127,6 @@ set(TEST_DUT_SRCS
 ##########################################################################
 
 set(TEST_TARGET_SRCS
-  src/main.cpp
   src/dtostrf.cpp
   src/itoa.cpp
   src/MillisFake.cpp
@@ -143,6 +151,8 @@ add_executable(
   ${TEST_TARGET}
   ${TEST_TARGET_SRCS}
 )
+
+target_link_libraries( ${TEST_TARGET} Catch2WithMain )
 
 ##########################################################################
 
