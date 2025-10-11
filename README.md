@@ -85,9 +85,9 @@ Documentation for how to integrate with a Arduino core (which is necessary if yo
 * [ArduinoCore-mbed](https://github.com/arduino/ArduinoCore-mbed#clone-the-repository-in-sketchbookhardwarearduino-git)
 * [ArduinoCore-samd](https://github.com/arduino/ArduinoCore-samd/#developing)
 
-## Donations
+## Support the project
 
-This open source code is maintained by Arduino with the help of the community. We invest a considerable amount of time in testing code, optimizing it and introducing new features. Please consider [donating](https://www.arduino.cc/en/donate/) or [sponsoring](https://github.com/sponsors/arduino) to support our work, as well as [buying original Arduino boards](https://store.arduino.cc) which is the best way to make sure our effort can continue in the long term.
+This open source code is maintained by Arduino with the help of the community. We invest a considerable amount of time in testing code, optimizing it and introducing new features. Please consider [buying original Arduino boards](https://store.arduino.cc) to support our work on the project.
 
 ## License and credits
 
