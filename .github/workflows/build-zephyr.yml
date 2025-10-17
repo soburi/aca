@@ -22,8 +22,8 @@ jobs:
             triplet: x86_64-zephyr-elf
     runs-on: ubuntu-latest
     env:
-      ZEPHYR_SDK_VERSION: 0.16.5
-      ZEPHYR_SDK_INSTALL_DIR: ${{ github.workspace }}/.zephyr-sdk-0.16.5
+      ZEPHYR_SDK_VERSION: 0.17.4
+      ZEPHYR_SDK_INSTALL_DIR: ${{ github.workspace }}/.zephyr-sdk-0.17.4
 
     steps:
       - name: Checkout repository
@@ -37,7 +37,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.ZEPHYR_SDK_INSTALL_DIR }}
-          key: zephyr-sdk-${{ runner.os }}-${{ env.ZEPHYR_SDK_VERSION }}
+          key: zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}
 
       - name: Download Zephyr SDK
         if: steps.cache-sdk.outputs.cache-hit != 'true'
@@ -67,36 +67,25 @@ jobs:
 
           TRIPLET="${{ matrix.triplet }}"
           TOOLBIN="${ZEPHYR_SDK_INSTALL_DIR}/${TRIPLET}/bin"
-
           SYSROOT="${ZEPHYR_SDK_INSTALL_DIR}/${TRIPLET}/${TRIPLET}"
-
           CFLAGS=(-Os -ffunction-sections -fdata-sections -fno-common "--sysroot=${SYSROOT}")
-          CPPFLAGS=("${CFLAGS[@]}" -std=gnu++17)
+          CPPFLAGS=("${CFLAGS[@]}" -std=std++11)
           INCLUDES=(-Iapi -Iapi/deprecated -Iapi/deprecated-avr-comp -Iapi/deprecated-avr-comp/avr)
 
-          mapfile -d '' SOURCES < <(find api -type f \( -name '*.c' -o -name '*.cpp' \) -print0)
-
-          if [ "${#SOURCES[@]}" -eq 0 ]; then
-            echo "No source files found in api/" >&2
-            exit 1
-          fi
+          mapfile -d '' SOURCES < <(find api -type f -name '*.cpp' -print0)
 
           obj_files=()
           for src in "${SOURCES[@]}"; do
             rel="${src}"
             obj="${OBJ_DIR}/${rel//\//_}.o"
-            if [[ "${src}" == *.c ]]; then
-              "${TOOLBIN}/${TRIPLET}-gcc" "${CFLAGS[@]}" "${INCLUDES[@]}" -c "${src}" -o "${obj}"
-            else
-              "${TOOLBIN}/${TRIPLET}-g++" "${CPPFLAGS[@]}" "${INCLUDES[@]}" -c "${src}" -o "${obj}"
-            fi
+            "${TOOLBIN}/${TRIPLET}-g++" "${CPPFLAGS[@]}" "${INCLUDES[@]}" -c "${src}" -o "${obj}"
             obj_files+=("${obj}")
           done
 
-          "${TOOLBIN}/${TRIPLET}-ar" rcs "${BUILD_DIR}/libarduino_compat.a" "${obj_files[@]}"
+          "${TOOLBIN}/${TRIPLET}-ar" rcs "${BUILD_DIR}/libarduinocore.a" "${obj_files[@]}"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: arduino-compat-${{ matrix.arch }}
-          path: ${{ github.workspace }}/build/${{ matrix.arch }}/libarduino_compat.a
+          name: libarduinocore-${{ matrix.arch }}
+          path: ${{ github.workspace }}/build/${{ matrix.arch }}/libarduinocore.a
