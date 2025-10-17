@@ -1,7 +1,6 @@
 name: Zephyr StaticLib
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
 
