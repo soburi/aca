@@ -25,7 +25,8 @@ jobs:
             triplet: x86_64-zephyr-elf
     runs-on: ubuntu-latest
     env:
-      ZEPHYR_SDK_INSTALL_DIR: ${{ runner.temp }}/zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}
+      ZEPHYR_SDK_INSTALL_DIR: ${{ github.workspace }}/.zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}
+
 
     steps:
       - name: Checkout repository
@@ -44,12 +45,13 @@ jobs:
       - name: Download Zephyr SDK
         if: steps.cache-sdk.outputs.cache-hit != 'true'
         run: |
-          cd ${{ runner.temp }}
+          cd "${RUNNER_TEMP}"
           wget -q https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${{ env.ZEPHYR_SDK_VERSION }}/zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}_linux-x86_64.tar.xz
           tar -xf zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}_linux-x86_64.tar.xz
           rm zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}_linux-x86_64.tar.xz
-          rm -rf ${{ env.ZEPHYR_SDK_INSTALL_DIR }}
-          mv zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }} ${{ env.ZEPHYR_SDK_INSTALL_DIR }}
+          rm -rf "${{ env.ZEPHYR_SDK_INSTALL_DIR }}"
+          mv "zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}" "${{ env.ZEPHYR_SDK_INSTALL_DIR }}"
+
 
       - name: Setup Zephyr toolchain
         if: steps.cache-sdk.outputs.cache-hit != 'true'
