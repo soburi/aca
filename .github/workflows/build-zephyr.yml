@@ -68,8 +68,7 @@ jobs:
           TOOLBIN="${ZEPHYR_SDK_INSTALL_DIR}/${TRIPLET}/bin"
           SYSROOT="${ZEPHYR_SDK_INSTALL_DIR}/${TRIPLET}/${TRIPLET}"
           CFLAGS=(-Os -ffunction-sections -fdata-sections -fno-common "--sysroot=${SYSROOT}")
-          CPPFLAGS=("${CFLAGS[@]}" -std=std++11)
-          INCLUDES=(-Iapi -Iapi/deprecated -Iapi/deprecated-avr-comp -Iapi/deprecated-avr-comp/avr)
+          CPPFLAGS=("${CFLAGS[@]}" -std=c++11)
 
           mapfile -d '' SOURCES < <(find api -type f -name '*.cpp' -print0)
 
@@ -77,7 +76,7 @@ jobs:
           for src in "${SOURCES[@]}"; do
             rel="${src}"
             obj="${OBJ_DIR}/${rel//\//_}.o"
-            "${TOOLBIN}/${TRIPLET}-g++" "${CPPFLAGS[@]}" "${INCLUDES[@]}" -c "${src}" -o "${obj}"
+            "${TOOLBIN}/${TRIPLET}-g++" "${CPPFLAGS[@]}" -Iapi -c "${src}" -o "${obj}"
             obj_files+=("${obj}")
           done
 
