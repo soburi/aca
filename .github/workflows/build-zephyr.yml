@@ -6,9 +6,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions:
-  contents: read
-
 env:
   ZEPHYR_SDK_VERSION: 0.16.5
 
