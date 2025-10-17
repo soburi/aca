@@ -1,4 +1,4 @@
-name: Build Zephyr static libraries
+name: Zephyr StaticLib
 
 on:
   push:
@@ -7,9 +7,6 @@ on:
 
 permissions:
   contents: read
-
-env:
-  ZEPHYR_SDK_VERSION: 0.16.5
 
 jobs:
   build:
@@ -26,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ZEPHYR_SDK_INSTALL_DIR: ${{ github.workspace }}/.zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}
+      ZEPHYR_SDK_VERSION: 0.16.5
 
 
     steps:
