@@ -101,11 +101,7 @@ void init(void);
 void initVariant(void);
 
 #ifndef HOST
-#ifdef __cplusplus
-int atexit(void (*func)()) noexcept __attribute__((weak));
-#else
 int atexit(void (*func)()) __attribute__((weak));
-#endif
 #endif
 int main() __attribute__((weak));
 

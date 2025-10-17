@@ -70,9 +70,11 @@ jobs:
           TRIPLET="${{ matrix.triplet }}"
           TOOLBIN="${ZEPHYR_SDK_INSTALL_DIR}/${TRIPLET}/bin"
 
-          CFLAGS=(-Os -ffunction-sections -fdata-sections -fno-common)
+          SYSROOT="${ZEPHYR_SDK_INSTALL_DIR}/${TRIPLET}/${TRIPLET}"
+
+          CFLAGS=(-Os -ffunction-sections -fdata-sections -fno-common "--sysroot=${SYSROOT}")
           CPPFLAGS=("${CFLAGS[@]}" -std=gnu++17)
-          INCLUDES=(-Iapi -Iapi/deprecated -Iapi/deprecated-avr-comp)
+          INCLUDES=(-Iapi -Iapi/deprecated -Iapi/deprecated-avr-comp -Iapi/deprecated-avr-comp/avr)
 
           mapfile -d '' SOURCES < <(find api -type f \( -name '*.c' -o -name '*.cpp' \) -print0)
 
