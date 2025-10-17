@@ -10,7 +10,8 @@ env:
   ZEPHYR_SDK_VERSION: 0.16.5
 
 jobs:
-  build:
+  build-staticlib:
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -21,7 +22,6 @@ jobs:
             triplet: riscv64-zephyr-elf
           - arch: x86_64
             triplet: x86_64-zephyr-elf
-    runs-on: ubuntu-latest
     env:
       ZEPHYR_SDK_INSTALL_DIR: ${{ runner.temp }}/zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}
 
