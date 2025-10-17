@@ -27,6 +27,7 @@ jobs:
     env:
       ZEPHYR_SDK_INSTALL_DIR: ${{ github.workspace }}/.zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}
 
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -50,6 +51,7 @@ jobs:
           rm zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}_linux-x86_64.tar.xz
           rm -rf "${{ env.ZEPHYR_SDK_INSTALL_DIR }}"
           mv "zephyr-sdk-${{ env.ZEPHYR_SDK_VERSION }}" "${{ env.ZEPHYR_SDK_INSTALL_DIR }}"
+
 
       - name: Setup Zephyr toolchain
         if: steps.cache-sdk.outputs.cache-hit != 'true'
